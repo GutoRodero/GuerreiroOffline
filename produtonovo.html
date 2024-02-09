@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="./Produto/ProdutoI001.php" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="nomeProduto">Nome *</label>
+                    <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do Produto"
+                        name="nomeProduto" required="required">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="valorProduto">Valor *</label>
+                    <input type="text" class="form-control" id="valorProduto" placeholder="R$ 0,00"
+                        name="valorProduto" required="required" oninput="formatarValor(this)">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="statusProduto">Status *</label>
+                    <select class="form-control" name="statusProduto" id="statusProduto" required>
+                        <option value="" selected>Selecione</option>
+                        <option value="1">Ativo</option>
+                        <option value="2">Inativo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+
+        <div class="message-card" id="messageCard"></div>
+    </div>
+
+    <script>
+        function formatarValor(input) {
+            // Remove caracteres não numéricos
+            let valor = input.value.replace(/\D/g, '');
+
+            // Formata o valor para o formato monetário (R$)
+            valor = "R$ " + (valor / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+            // Atualiza o valor no campo de entrada
+            input.value = valor;
+        }
+    </script>
+
+</body>
+
+</html>
