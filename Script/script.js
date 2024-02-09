@@ -51,7 +51,7 @@ function cadastrarPessoa() {
     if (camposObrigatoriosPreenchidos($('#formPessoa'))) {
         $.ajax({
             type: "POST",
-            url: "./Pessoa/PessoaI001.php",
+            url: "Pessoa/PessoaI001.php",
             data: form.serialize(),
             success: function (response) {
                 if (response.includes("sucesso")) {
@@ -96,10 +96,13 @@ function formatarValor(input) {
 
 //produtonovo.php
 function cadastrarProduto() {
+    console.log("")
     if (camposObrigatoriosPreenchidos($('#formProduto'))) {
+
+        console.log("dentro do campo obrigatorio")
         $.ajax({
             type: "POST",
-            url: "./Produto/ProdutoI001.php",
+            url: "Produto/ProdutoI001.php",
             data: form.serialize(),
             success: function (response) {
                 if (response.includes("sucesso")) {
@@ -118,7 +121,7 @@ function cadastrarProduto() {
 function excluirPessoa() {
     $.ajax({
         type: "POST",
-        url: "./Pessoa/PessoaE001.php",
+        url: "Pessoa/PessoaE001.php",
         data: form.serialize(),
         success: function (response) {
             if (response.includes("sucesso")) {

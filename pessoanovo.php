@@ -16,15 +16,15 @@
             <form id="formPessoa" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label class="label-form" for="nomePessoa">Nome *</label>
+                        <label for="nomePessoa">Nome *</label>
                         <input type="text" class="form-control" id="nomePessoa" placeholder="Nome da Pessoa" name="nomePessoa" required="required">
                     </div>
                     <div class="form-group col-md-4">
-                        <label class="label-form" for="apelidoPessoa">Apelido</label>
+                        <label for="apelidoPessoa">Apelido</label>
                         <input type="text" class="form-control" placeholder="Apelido da Pessoa" id="apelidoPessoa" name="apelidoPessoa">
                     </div>
                     <div class="form-group col-md-4">
-                        <label class="label-form" for="sexoPessoa">Sexo *</label>
+                        <label for="sexoPessoa">Sexo *</label>
                         <select class="form-control" name="sexoPessoa" id="sexoPessoa" required="required">
                             <option value="" selected>Selecione</option>
                             <option value="1">Masculino</option>

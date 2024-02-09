@@ -1,4 +1,5 @@
 <?php include("./index.php"); ?>
+
 <head>
     <title>Tabela de Produtos</title>
 </head>
@@ -22,17 +23,18 @@
                 // Criar a tabela HTML
                 echo "<table>
                     <tr>
-                        <th>Nome</th>
-                        <th style=\"text-align: center;\">Valor</th>
-                        <th style=\"text-align: center;\">Status</th>
+                        <th style=\"width: 50%;\">Nome</th>
+                        <th style=\"width: 20%; text-align: center;\">Valor</th>
+                        <th style=\"width: 20%; text-align: center;\">Status</th>
+                        <th style=\"width: 10%; text-align: center;\">Opções</th>
                     </tr>";
 
                 // Loop através dos resultados e exibir os dados na tabela
                 while ($row = $resultado->fetch_assoc()) {
                     echo "<tr>
-                        <td style=\"width: 60%;\">" . $row['nomeProduto'] . "</td>
-                        <td style=\"width: 20%;\">" . $row['valorProduto'] . "</td>
-                        <td style=\"width: 20%; text-align: center;\">";
+                        <td style=\"\">" . $row['nomeProduto'] . "</td>
+                        <td style=\" text-align: center;\">" . $row['valorProduto'] . "</td>
+                        <td style=\"text-align: center;\">";
 
                     // Converter o valor numérico do campo sexo para a string correspondente
                     switch ($row['statusProduto']) {
@@ -46,7 +48,12 @@
                             echo "Desconhecido";
                     }
 
-                    echo "</td></tr>";
+                    echo "</td>
+                    <td style=\"text-align: center;\"
+                            <a title=\"Editar Produto\" href=\"#\"><i class=\"fas fa-pencil-alt\" style=\"color: blue;\" href=\"./editarproduto.php?idProduto=$idProduto\"></i></a>
+                            <a title=\"Excluir Produto\"href=\"#\"><i class=\"fas fa-trash-alt\" style=\"color: red;\" onclick=\"excluirProduto('$idProduto')\"></i></a>
+                        </td>
+                    </tr>";
                 }
 
                 echo "</table>";

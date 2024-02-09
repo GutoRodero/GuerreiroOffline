@@ -123,7 +123,7 @@ button[type="button"]:hover {
     /* Ajusta a margem esquerda em relação à largura da tabela */
 }
 
-.label-form {
+.form-group label {
     margin-top: 15px;
     margin-bottom: 10px;
 }

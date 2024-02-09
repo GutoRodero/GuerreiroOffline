@@ -1,4 +1,4 @@
-<?php include("conexao.php"); ?>
+<?php include("conexao.php");?>
 <link rel="stylesheet" type="text/css" href="./Css/style.css">
 <link rel="stylesheet" type="text/css" href="./Css/menu.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
