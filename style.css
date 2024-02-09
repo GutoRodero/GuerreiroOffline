@@ -21,8 +21,7 @@ body {
     padding: 0;
     background-color: #f0f0f0;
 }
-
-#menu {
+.menu {
     width: 20%;
     height: 100vh;
     position: fixed;
@@ -31,19 +30,22 @@ body {
     background-color: #2c3e50;
     padding-top: 20px;
     overflow-y: auto; /* Adiciona uma barra de rolagem vertical se necessário */
+    transition: background-color 0.3s; /* Adiciona uma transição suave para a mudança de cor */
+    opacity: 0.9; /* Define a opacidade */
+    list-style: none;
 }
 
-#menu ul {
+
+.menu ul {
     list-style: none;
-    /* Removendo a marcação de lista */
     padding: 0;
 }
 
-#menu li {
+.menu li {
     margin-bottom: 10px;
 }
 
-#menu a {
+.menu a {
     display: block;
     color: #ecf0f1;
     text-decoration: none;
@@ -51,9 +53,34 @@ body {
     transition: background-color 0.3s;
 }
 
-#menu a:hover {
+.menu a:hover {
     background-color: #34495e;
-    /* Cor de destaque ao passar o mouse */
+}
+
+.menu .submenu {
+    cursor: pointer;
+    margin-left: 15px;
+    display: none;
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
+}
+
+.menu .submenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu .submenu ul li {
+    transition: background-color 0.3s;
+}
+
+.menu .submenu a {
+    color: #fff; /* Cor do texto do submenu */
+}
+
+.menu .submenu a:hover {
+    background-color: #4a627a; /* Cor de destaque do submenu ao passar o mouse */
 }
 
 .conteudo {
@@ -62,25 +89,6 @@ body {
     float: right;
     text-align: center;
 }
-
-.submenu {
-    cursor: pointer;
-    margin-left: 15px;
-    display: none;
-    transition: max-height 0.3s ease-out;
-    max-height: 0;
-}
-
-.submenu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.submenu ul li {
-    transition: background-color 0.3s;
-}
-
 
 .message-card {
     position: fixed;
@@ -141,7 +149,7 @@ select {
     appearance: none;
 }
 
-button[type="submit"] {
+button[type="button"] {
     position: relative;
     left: 40vh;
     background-color: #007bff;
@@ -153,7 +161,7 @@ button[type="submit"] {
     font-size: 16px;
 }
 
-button[type="submit"]:hover {
+button[type="button"]:hover {
     background-color: #0056b3;
 }
 
@@ -169,7 +177,7 @@ button[type="submit"]:hover {
     flex: 1 1 30%; /* Distribui igualmente o espaço entre os elementos */
 }
 
-.button-submit {
+.button-button {
     flex: 1 1 100%; /* Estende o botão para ocupar toda a largura da linha */
     margin-top: 20px; /* Adiciona margem acima do botão */
 }
