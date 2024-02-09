@@ -11,19 +11,20 @@
 <body>
 
     <div class="conteudo">
+        <h4>Pessoa/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./pessoa.php'">Pessoa</span></h4>
         <div class="container">
             <form id="formPessoa" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="nomePessoa">Nome *</label>
+                        <label class="label-form" for="nomePessoa">Nome *</label>
                         <input type="text" class="form-control" id="nomePessoa" placeholder="Nome da Pessoa" name="nomePessoa" required="required">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="apelidoPessoa">Apelido</label>
-                        <input type="text" class="form-control" id="apelidoPessoa" name="apelidoPessoa">
+                        <label class="label-form" for="apelidoPessoa">Apelido</label>
+                        <input type="text" class="form-control" placeholder="Apelido da Pessoa" id="apelidoPessoa" name="apelidoPessoa">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="sexoPessoa">Sexo *</label>
+                        <label class="label-form" for="sexoPessoa">Sexo *</label>
                         <select class="form-control" name="sexoPessoa" id="sexoPessoa" required="required">
                             <option value="" selected>Selecione</option>
                             <option value="1">Masculino</option>
@@ -33,7 +34,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" onclick="cadastrarPessoa()">Salvar</button>
+                    <button type="button" style="position: right;" class="btn btn-primary" onclick="cadastrarPessoa()">Salvar</button>
                 </div>
             </form>
 

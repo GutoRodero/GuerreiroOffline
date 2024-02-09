@@ -5,7 +5,8 @@
 
 <body>
     <div class="conteudo">
-        <h4>Produto/<span style="color: #34679d; cursor: pointer;" href="./produto.php">Cliente</span></h4>
+        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;" href="./produto.php">Produto</span></h4>
+        <button onclick="window.location.href='./produtonovo.php'" class="button-cadastrar">Cadastrar Produto</button>
         <?php
 
         // Consulta SQL para obter os dados da tabela Produto
@@ -63,6 +64,5 @@
         $mysqli->close();
 
         ?>
-        <button href="./produtonovo.php" class="button-cadastrar">Cadastrar Produto</button>
     </div>
 </body>

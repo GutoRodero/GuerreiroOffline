@@ -114,3 +114,22 @@ function cadastrarProduto() {
         });
     }
 }
+
+function excluirPessoa() {
+    $.ajax({
+        type: "POST",
+        url: "./Pessoa/PessoaE001.php",
+        data: form.serialize(),
+        success: function (response) {
+            if (response.includes("sucesso")) {
+                showMessage("Pessoa excluida com sucesso!", "success");
+            } else {
+                showMessage("Erro ao excluir: " + response, "danger");
+            }
+        },
+        error: function () {
+            showMessage("Erro ao excluir a Pessoa.", "danger");
+        }
+    });
+}
+
