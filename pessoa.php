@@ -31,7 +31,7 @@
 
                 // Loop através dos resultados e exibir os dados na tabela
                 while ($row = $resultado->fetch_assoc()) {
-                    $idPessoa = $row['nomePessoa'];
+                    $idPessoa = $row['idPessoa'];
                     echo "<tr>
                             <td>" . $row['nomePessoa'] . "</td>
                             <td>" . $row['apelidoPessoa'] . "</td>

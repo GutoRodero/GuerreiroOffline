@@ -11,7 +11,7 @@
         <?php
 
         // Consulta SQL para obter os dados da tabela Produto
-        $consulta = "SELECT nomeProduto, valorProduto, statusProduto FROM Produto";
+        $consulta = "SELECT idProduto, nomeProduto, valorProduto, statusProduto FROM Produto";
 
         // Executar a consulta
         $resultado = $mysqli->query($consulta);
@@ -31,9 +31,10 @@
 
                 // Loop através dos resultados e exibir os dados na tabela
                 while ($row = $resultado->fetch_assoc()) {
+                    $idProduto = $row['idProduto'];
                     echo "<tr>
                         <td style=\"\">" . $row['nomeProduto'] . "</td>
-                        <td style=\" text-align: center;\">" . $row['valorProduto'] . "</td>
+                        <td style=\" text-align: center;\">R$" . number_format($row['valorProduto'], 2, ',', '.') . "</td>
                         <td style=\"text-align: center;\">";
 
                     // Converter o valor numérico do campo sexo para a string correspondente

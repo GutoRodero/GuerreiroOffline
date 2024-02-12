@@ -4,21 +4,25 @@ include("../script.js");
 
 // Verifique se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recupere os valores enviados pelo formulário
-    $nomeProduto = $_POST["nomeProduto"];
-    $valorProduto = $_POST["valorProduto"];
+    $nomeProduto = $_POST["nomeProduto"];    
+    // Remover caracteres não numéricos e vírgulas do valorProduto
+    $valorProduto = preg_replace('/[^0-9,]/', '', $_POST["valorProduto"]);
+    // Substituir vírgulas por pontos para usar como separador decimal
+    $valorProduto = str_replace(',', '.', $valorProduto);
+    // Converter para float
+    $valorProduto = floatval($valorProduto);
     $statusProduto = $_POST["statusProduto"];
 
     // Prepare a consulta SQL para inserir os dados na tabela Produto
     $sql = "INSERT INTO Produto (nomeProduto, valorProduto, statusProduto) VALUES (?, ?, ?)";
 
     // Preparar a declaração
-    $stmt = $conexao->prepare($sql);
+    $stmt = $mysqli->prepare($sql);
 
     // Verifique se a preparação foi bem-sucedida
     if ($stmt) {
         // Vincular parâmetros
-        $stmt->bind_param("sss", $nomeProduto, $valorProduto, $statusProduto);
+        $stmt->bind_param("sds", $nomeProduto, $valorProduto, $statusProduto);
 
         // Execute a consulta
         $stmt->execute();
@@ -38,5 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Feche a conexão com o banco de dados
-    $conexao->close();
+    $mysqli->close();
 }
+?>

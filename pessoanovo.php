@@ -9,9 +9,8 @@
 </head>
 
 <body>
-
     <div class="conteudo">
-        <h4>Pessoa/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./pessoa.php'">Pessoa</span></h4>
+        <h4>Pessoa/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./pessoa.php'">Cliente</span>/Cadastrar Cliente</h4>
         <div class="container">
             <form id="formPessoa" method="post">
                 <div class="form-row">
