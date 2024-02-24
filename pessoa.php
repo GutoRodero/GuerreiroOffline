@@ -43,7 +43,7 @@
                             echo "Masculino";
                             break;
                         case 2:
-                            echo "Feminino";
+                            echo "Feminino"; 
                             break;
                         case 3:
                             echo "Outros";
@@ -54,7 +54,7 @@
 
                     echo "</td>
                         <td style=\"text-align: center;\"
-                            <a title=\"Editar Pessoa\" href=\"#\"><i class=\"fas fa-pencil-alt\" style=\"color: blue;\" href=\"./editarpessoa.php?idPessoa=$idPessoa\"></i></a>
+                            <a title=\"Editar Pessoa\" href=\"./pessoaeditar.php?idPessoa=<?php echo $idPessoa; ?>\"><i class=\"fas fa-pencil-alt\" style=\"color: blue; cursor: pointer;\"></i></a>
                             <a title=\"Excluir Pessoa\"href=\"#\"><i class=\"fas fa-trash-alt\" style=\"color: red;\" onclick=\"excluirPessoa('$idPessoa')\"></i></a>
                         </td>
                         </tr>";

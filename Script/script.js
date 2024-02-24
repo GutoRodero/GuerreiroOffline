@@ -72,12 +72,16 @@ function cadastrarPessoa() {
     }
 }
 
-function cadastrarPessoa() {
-    if (camposObrigatoriosPreenchidos($('#formPessoa'))) {
+function excluirPessoa(idPessoa) {
+    var confirmacao = confirm("Tem certeza que deseja excluir a pessoa?");
+
+    if (confirmacao) {
         $.ajax({
             type: "POST",
             url: "./Pessoa/PessoaE001.php",
-            data: $('#formPessoa').serialize(),
+            data: {
+                idPessoa: idPessoa
+            },
             success: function (response) {
                 if (response.includes("sucesso")) {
                     window.location.href = "pessoa.php";
@@ -114,6 +118,31 @@ function cadastrarProduto() {
             },
             error: function () {
                 showMessage("Erro ao enviar o formulário.", "danger");
+            }
+        });
+    }
+}
+
+function excluirProduto(idProduto) {
+    // Exibe um diálogo de confirmação
+    var confirmacao = confirm("Tem certeza que deseja excluir este produto?");
+
+    if (confirmacao) {
+        $.ajax({
+            type: "POST",
+            url: "./Produto/ProdutoE001.php",
+            data: {
+                idProduto: idProduto
+            },
+            success: function (response) {
+                if (response.includes("sucesso")) {
+                    window.location.href = "produto.php";
+                } else {
+                    showMessage("Erro ao excluir: " + response, "danger");
+                }
+            },
+            error: function () {
+                showMessage("Erro ao tentar excluir.", "danger");
             }
         });
     }

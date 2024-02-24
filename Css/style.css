@@ -63,7 +63,7 @@ table {
 
 form {
     margin: 50px auto;
-    width: 80%;
+    width: 100%;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
@@ -90,9 +90,9 @@ select {
     appearance: none;
 }
 
-button[type="button"] {
+button[type="button"] { 
     position: relative;
-    left: 40vh;
+    left: 60vh;
     background-color: #007bff;
     color: #fff;
     border: none;

@@ -15,15 +15,15 @@
         <div class="container">
             <form id="formProduto" method="post">
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="nomeProduto">Nome *</label>
                         <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do Produto" name="nomeProduto" required="required">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="valorProduto">Valor *</label>
                         <input type="text" class="form-control" id="valorProduto" placeholder="R$ 0,00" name="valorProduto" required="required" oninput="formatarValor(this)">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="statusProduto">Status *</label>
                         <select class="form-control" name="statusProduto" id="statusProduto" required>
                             <option value="1" selected>Ativo</option>
