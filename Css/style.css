@@ -90,21 +90,24 @@ select {
     appearance: none;
 }
 
-button[type="button"] { 
-    position: relative;
-    left: 60vh;
+button[type="button"], 
+button[type="submit"] { 
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
-    margin-top: 20px;
     font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-button[type="button"]:hover {
+button[type="button"]:hover, 
+button[type="submit"]:hover {
     background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #valorProduto {
@@ -117,10 +120,41 @@ button[type="button"]:hover {
 }
 
 .button-cadastrar {
-    margin-bottom: 1%;
-    /* Ajusta a margem superior em relação à altura da tabela */
-    margin-left: 80%;
-    /* Ajusta a margem esquerda em relação à largura da tabela */
+    margin-top: 20px;
+    margin-left: auto;
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-cadastrar:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-button {
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.icon-button:hover {
+    color: #0056b3;
+}
+
+.icon-button.delete {
+    color: red;
+}
+
+.icon-button.delete:hover {
+    color: darkred;
 }
 
 .form-group label {

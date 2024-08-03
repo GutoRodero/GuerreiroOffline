@@ -60,7 +60,7 @@ function cadastrarPessoa() {
                     showMessage("Pessoa cadastrada com sucesso!", "success");
                     setTimeout(function () {
                         window.location.href = "pessoa.php";
-                    }, 1000); // 1000 milissegundos = 1 segundo
+                    }, 500); // 500 milissegundos = 1 segundo
                 } else {
                     showMessage("Erro ao cadastrar: " + response, "danger");
                 }
@@ -98,10 +98,7 @@ function excluirPessoa(idPessoa) {
 
 //produtonovo.php
 function cadastrarProduto() {
-    console.log("")
     if (camposObrigatoriosPreenchidos($('#formProduto'))) {
-
-        console.log("dentro do campo obrigatorio")
         $.ajax({
             type: "POST",
             url: "./Produto/ProdutoI001.php",
@@ -111,7 +108,7 @@ function cadastrarProduto() {
                     showMessage("Produto cadastrado com sucesso!", "success");
                     setTimeout(function () {
                         window.location.href = "produto.php";
-                    }, 1000); // 1000 milissegundos = 1 segundo
+                    }, 500); // 500 milissegundos = 1 segundo
                 } else {
                     showMessage("Erro ao cadastrar: " + response, "danger");
                 }
@@ -146,4 +143,138 @@ function excluirProduto(idProduto) {
             }
         });
     }
+}
+
+//produtoeditar.php
+function editarProduto() {
+    if (camposObrigatoriosPreenchidos($('#formProduto'))) {
+        $.ajax({
+            type: "POST",
+            url: "./Produto/ProdutoA001.php",
+            data: $('#formProduto').serialize(),
+            success: function (data) {
+                try {
+                    const response = JSON.parse(data);
+                    if (response.status === 'success') {
+                        showMessage(response.message, "success");
+                        setTimeout(function () {
+                            window.location.href = "produto.php";
+                        }, 500);
+                    } else {
+                        showMessage("Erro ao editar: " + response.message, "danger");
+                    }
+                } catch (e) {
+                    console.error("Erro ao processar a resposta:", e);
+                    showMessage("Erro ao processar a resposta do servidor.", "danger");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Erro ao enviar o formulário:", textStatus, errorThrown);
+                showMessage("Erro ao enviar o formulário.", "danger");
+            }
+        });
+    } else {
+        showMessage("Por favor, preencha todos os campos obrigatórios.", "warning");
+    }
+}
+
+//vendanovo.php
+function cadastrarVenda() {
+    if (camposObrigatoriosPreenchidos($('#formVenda'))) {
+        $.ajax({
+            type: "POST",
+            url: "./Venda/VendaI001.php",
+            data: $('#formVenda').serialize(),
+            success: function (response) {
+                if (response.includes("sucesso")) {
+                    showMessage("Venda cadastrado com sucesso!", "success");
+                    setTimeout(function () {
+                        window.location.href = "venda.php";
+                    }, 500); // 500 milissegundos = 1 segundo
+                } else {
+                    showMessage("Erro ao cadastrar: " + response, "danger");
+                }
+            },
+            error: function () {
+                showMessage("Erro ao enviar o formulário.", "danger");
+            }
+        });
+    }
+}
+
+function excluirVenda(idVenda) {
+    if (confirm('Tem certeza de que deseja excluir esta venda?')) {
+        $.ajax({
+            type: "POST",
+            url: "./Venda/VendaE001.php",
+            data: {
+                idVenda: idVenda
+            },
+            success: function (response) {
+                if (response.includes("sucesso")) {
+                    showMessage("Venda excluída com sucesso!", "success");
+                    setTimeout(function () {
+                        window.location.href = "venda.php";
+                    }, 500); // Redirecionar após 0,5 segundos
+                } else {
+                    showMessage("Erro ao excluir: " + response, "danger");
+                }
+            },
+            error: function () {
+                showMessage("Erro ao tentar excluir.", "danger");
+            }
+        });
+    }
+}
+//vendaeditar.php
+function editarVenda() {
+    if (camposObrigatoriosPreenchidos($('#formVenda'))) {
+        $.ajax({
+            type: "POST",
+            url: "./Venda/VendaA001.php",
+            data: $('#formVenda').serialize(),
+            success: function (data) {
+                try {
+                    const response = JSON.parse(data);
+
+                    if (response.status === 'success') {
+                        showMessage(response.message, "success");
+                        setTimeout(function () {
+                            window.location.href = "venda.php";
+                        }, 500);
+                    } else {
+                        showMessage("Erro ao editar: " + response.message, "danger");
+                    }
+                } catch (e) {
+                    console.error("Erro ao processar a resposta:", e);
+                    showMessage("Erro ao processar a resposta do servidor.", "danger");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Erro ao enviar o formulário:", textStatus, errorThrown);
+                showMessage("Erro ao enviar o formulário.", "danger");
+            }
+        });
+    } else {
+        showMessage("Por favor, preencha todos os campos obrigatórios.", "warning");
+    }
+}
+
+function removerItemVenda(idItemVenda) {
+    $.ajax({
+        type: "POST",
+        url: "./Venda/VendaE002.php",
+        data: {
+            idItemVenda: idItemVenda
+        },
+        success: function (data) {
+            if (data.includes("sucesso")) {
+            } else {
+                showMessage("Erro ao excluir: " + data, "danger");
+            }
+        },
+        error: function () {
+            showMessage("Erro ao tentar excluir.", "danger");
+        }
+    });
 }

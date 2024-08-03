@@ -11,7 +11,7 @@
 <body>
 
     <div class="conteudo">
-        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./produto.php'">Produto</span></h4>
+        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./produto.php'">Produto</span>/Produto Novo</h4>
         <div class="container">
             <form id="formProduto" method="post">
                 <div class="form-row">
