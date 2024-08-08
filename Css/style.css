@@ -1,0 +1,163 @@
+th,
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.conteudo {
+    width: 80%;
+    border-collapse: collapse;
+    float: right;
+    text-align: center;
+}
+
+table {
+    border: 1px solid black;
+    background-color: #f0f0f0;
+    width: 90%;
+    margin: 0 auto;
+    /* Adiciona margem automática para centralizar horizontalmente */
+}
+
+.message-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.message-card p {
+    margin: 0;
+    color: #333;
+}
+
+.message-card.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.message-card.error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+form {
+    margin: 50px auto;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+select {
+    appearance: none;
+}
+
+button[type="button"], 
+button[type="submit"] { 
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button[type="button"]:hover, 
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#valorProduto {
+    font-family: monospace;
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button-cadastrar {
+    margin-top: 20px;
+    margin-left: auto;
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-cadastrar:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-button {
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.icon-button:hover {
+    color: #0056b3;
+}
+
+.icon-button.delete {
+    color: red;
+}
+
+.icon-button.delete:hover {
+    color: darkred;
+}
+
+.form-group label {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
