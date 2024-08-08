@@ -41,7 +41,7 @@
             </div>
             <ul class="submenuItems">
                 <li><a href="./relatorioproduto.php">Produtos</a></li>
-                <li><a href="./relatoriopessoa.php">Clientes</a></li>
+                <li><a href="./relatoriocliente.php">Clientes</a></li>
             </ul>
             
         </li> 
