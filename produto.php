@@ -1,76 +1,58 @@
-<?php require_once("./index.php"); ?>
+<?php include("./conexao.php"); ?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
-    <title>Tabela de Produtos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="conteudo">
-        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./produto.php'">Produto</span></h4>
-        <button onclick="window.location.href='./produtonovo.php'" class="button-cadastrar" style="margin-bottom: 20px;">Cadastrar Produto</button>
-        <?php
+    <div class="container">
+        <h2>Lista de Produtos</h2>
+        <button onclick="window.location.href='./produtonovo.php'" class="btn btn-primary">Cadastrar Produto</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $consulta = "SELECT idProduto, nomeProduto, valorProduto, statusProduto FROM Produto";
+                $resultado = $mysqli->query($consulta);
 
-        // Consulta SQL para obter os dados da tabela Produto
-        $consulta = "SELECT idProduto, nomeProduto, valorProduto, statusProduto FROM Produto";
-
-        // Executar a consulta
-        $resultado = $mysqli->query($consulta);
-
-        // Verificar se a consulta foi bem-sucedida
-        if ($resultado) {
-            // Verificar se há pelo menos um produto na tabela
-            if ($resultado->num_rows > 0) {
-                // Criar a tabela HTML
-                echo "<table>
-                    <tr>
-                        <th style=\"width: 50%;\">Nome</th>
-                        <th style=\"width: 20%; text-align: center;\">Valor</th>
-                        <th style=\"width: 20%; text-align: center;\">Status</th>
-                        <th style=\"width: 10%; text-align: center;\">Opções</th>
-                    </tr>";
-
-                // Loop através dos resultados e exibir os dados na tabela
-                while ($row = $resultado->fetch_assoc()) {
-                    $idProduto = $row['idProduto'];
-                    echo "<tr>
-                        <td>" . $row['nomeProduto'] . "</td>
-                        <td style=\"text-align: center;\">R$" . number_format($row['valorProduto'], 2, ',', '.') . "</td>
-                        <td style=\"text-align: center;\">";
-
-                    // Converter o valor numérico do campo status para a string correspondente
-                    switch ($row['statusProduto']) {
-                        case 1:
-                            echo "Ativo";
-                            break;
-                        case 2:
-                            echo "Inativo";
-                            break;
-                        default:
-                            echo "Desconhecido";
-                    }
-
-                    echo "</td>
-                        <td style=\"text-align: center;\">
-                            <a title=\"Editar Produto\" href=\"./produtoeditar.php?idProduto=$idProduto\"><i class=\"fas fa-pencil-alt\" style=\"color: blue; cursor: pointer;\"></i></a>
-                            <a title=\"Excluir Produto\" href=\"#\"><i class=\"fas fa-trash-alt\" style=\"color: red; cursor: pointer;\" onclick=\"excluirProduto('$idProduto')\"></i></a>
+                if ($resultado->num_rows > 0) {
+                    while ($row = $resultado->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row['nomeProduto'] . "</td>";
+                        echo "<td>R$" . number_format($row['valorProduto'], 2, ',', '.') . "</td>";
+                        echo "<td>" . ($row['statusProduto'] == 1 ? 'Ativo' : 'Inativo') . "</td>";
+                ?>
+                        <td>
+                            <a href='./produtoeditar.php?idProduto=<?php echo $row['idProduto']; ?>' class='btn btn-warning'>Editar</a>
+                            <form action='./Produto/ProdutoE001.php' method='post' style='display:inline;'>
+                                <input type='hidden' name='idProduto' value='<?php echo $row['idProduto']; ?>'>
+                                <button type='submit' class='btn btn-danger'>Excluir</button>
+                            </form>
                         </td>
-                    </tr>";
+                <?php
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>Nenhum produto encontrado.</td></tr>";
                 }
 
-                echo "</table>";
-            } else {
-                echo "<p>Nenhum produto encontrado na tabela Produto.</p>";
-            }
-
-            // Liberar o resultado da consulta
-            $resultado->free();
-        } else {
-            echo "<p>Erro na consulta: " . $mysqli->error . "</p>";
-        }
-
-        // Fechar a conexão com o banco de dados
-        $mysqli->close();
-
-        ?>
+                $mysqli->close();
+                ?>
+            </tbody>
+        </table>
     </div>
 </body>
+
+</html>

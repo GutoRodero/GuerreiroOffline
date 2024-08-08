@@ -1,46 +1,32 @@
 <?php
 include("../conexao.php");
-include("../script.js");
 
-// Verifique se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifique se o idProduto foi enviado
-    if (isset($_POST["idProduto"])) {
-        // Recupere o idProduto enviado pelo formulário
-        $idProduto = $_POST["idProduto"];
+    // Receba o ID do produto a ser excluído
+    $idProduto = $_POST["idProduto"];
 
-        // Prepare a consulta SQL para excluir o registro da tabela Produto com base no idProduto
-        $sql = "DELETE FROM Produto WHERE idProduto = ?";
+    // Prepare a consulta SQL para excluir o produto
+    $sql = "DELETE FROM Produto WHERE idProduto = ?";
 
-        // Preparar a declaração
-        $stmt = $mysqli->prepare($sql);
+    // Prepare e execute a consulta
+    $stmt = $mysqli->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("i", $idProduto); // 'i' para integer
+        $stmt->execute();
 
-        // Verifique se a preparação foi bem-sucedida
-        if ($stmt) {
-            // Vincular parâmetros
-            $stmt->bind_param("i", $idProduto);
-
-            // Execute a consulta
-            $stmt->execute();
-
-            // Verifique se a exclusão foi bem-sucedida
-            if ($stmt->affected_rows > 0) {
-                // Chame a função showMessage do script.js
-                echo '<script>showMessage("Registro excluído com sucesso da tabela Produto.", "success");</script>';
-            } else {
-                echo '<script>showMessage("Erro ao excluir registro da tabela Produto.", "danger");</script>';
-            }
-
-            // Feche a declaração
-            $stmt->close();
+        if ($stmt->affected_rows > 0) {
+            // Redirecione para produto.php após exclusão bem-sucedida
+            header("Location: ../produto.php");
+            exit();
         } else {
-            echo '<script>showMessage("Erro ao preparar a consulta.", "danger");</script>';
+            echo "Erro ao excluir o produto ou o produto não foi encontrado.";
         }
+        $stmt->close();
     } else {
-        echo '<script>showMessage("ID da Produto não fornecido.", "danger");</script>';
+        echo "Erro ao preparar a consulta.";
     }
-
-    // Feche a conexão com o banco de dados
     $mysqli->close();
+} else {
+    echo "Método de requisição inválido.";
 }
 ?>

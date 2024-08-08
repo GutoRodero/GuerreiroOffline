@@ -1,4 +1,4 @@
-<?php include("./index.php"); ?>
+<?php include("./conexao.php"); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,44 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <div class="conteudo">
-        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./produto.php'">Produto</span>/Produto Novo</h4>
-        <div class="container">
-            <form id="formProduto" method="post">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="nomeProduto">Nome *</label>
-                        <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do Produto" name="nomeProduto" required="required">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="valorProduto">Valor *</label>
-                        <input type="text" class="form-control" id="valorProduto" placeholder="R$ 0,00" name="valorProduto" required="required" oninput="formatarValor(this)">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="statusProduto">Status *</label>
-                        <select class="form-control" name="statusProduto" id="statusProduto" required>
-                            <option value="1" selected>Ativo</option>
-                            <option value="2">Inativo</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary" onclick="cadastrarProduto()">Salvar</button>
-                </div>
-            </form>
-
-            <div class="message-card" id="messageCard"></div>
-        </div>
+    <div class="container">
+        <h2>Cadastrar Produto</h2>
+        <form action="./Produto/ProdutoI001.php" method="post">
+            <div class="form-group">
+                <label for="nomeProduto">Nome:</label>
+                <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
+            </div>
+            <div class="form-group">
+                <label for="valorProduto">Valor:</label>
+                <input type="text" class="form-control" id="valorProduto" name="valorProduto" required>
+            </div>
+            <div class="form-group">
+                <label for="statusProduto">Status:</label>
+                <select class="form-control" id="statusProduto" name="statusProduto">
+                    <option value="1">Ativo</option>
+                    <option value="2">Inativo</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
     </div>
-
 </body>
-
 </html>
-
-<script>
-    
-</script>

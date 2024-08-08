@@ -24,19 +24,8 @@
             </div>
             <ul class="submenuItems">
                 <li><a href="./produto.php">Produto</a></li>
-                <li><a href="./venda.php">Venda</a></li>
             </ul>
         </li>
-        <!-- <li>
-            <div class="dropdownlink"><i class="fa fa-users" aria-hidden="true"></i> Pessoa
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </div>
-            <ul class="submenuItems">
-                <li><a href="./pessoa.php">Cliente</a></li>
-            </ul>
-        </li> -->
     </ul>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="./Script/script.js"></script>
-    <script src="./Script/menu.js"></script>
+</body>
+</html>
