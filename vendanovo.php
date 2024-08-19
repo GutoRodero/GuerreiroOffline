@@ -18,6 +18,23 @@
                         <label for="obsVenda">Observações</label>
                         <input type="text" class="form-control" id="obsVenda" name="obsVenda" placeholder="Observações da Venda">
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="cliente">Cliente</label>
+                        <select class="form-control" id="cliente" name="cliente" placeholder="Selecione um cliente" >
+                            <option value="">Selecione um Cliente</option>
+                            <?php
+                            include("../conexao.php");
+                            $consultaCliente = "SELECT idPessoa, apelidoPessoa  FROM pessoa";
+                            $resultadoCliente = $mysqli->query($consultaCliente);
+                            if ($resultadoCliente->num_rows > 0) {
+                                while ($row = $resultadoCliente->fetch_assoc()) {
+                                    echo "<option value='" . $row['idPessoa'] . "'>" . $row['apelidoPessoa'] . "</option>";
+                                }
+                            }
+                            $resultadoCliente->free();
+                            ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">

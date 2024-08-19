@@ -4,6 +4,7 @@ include("../conexao.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $obsVenda = $_POST['obsVenda'];
     $produtos = $_POST['produtos'];
+    $cliente = $_POST['cliente']; 
     $valores = $_POST['valores'];
     $quantidades = $_POST['quantidades'];
 
@@ -12,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         // Inserir a venda na tabela Venda
-        $queryVenda = "INSERT INTO Venda (obsVenda, dataVenda) VALUES (?, NOW())";
+        $queryVenda = "INSERT INTO Venda (obsVenda, idPessoa, dataVenda) VALUES (?, ?, NOW())";
         $stmtVenda = $mysqli->prepare($queryVenda);
-        $stmtVenda->bind_param("s", $obsVenda);
+        $stmtVenda->bind_param("si", $obsVenda, $cliente);
         $stmtVenda->execute();
 
         if ($stmtVenda->affected_rows > 0) {

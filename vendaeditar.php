@@ -1,4 +1,4 @@
-<?php include("./index.php"); ?>
+<?php include ("./index.php"); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,16 +34,29 @@
 
 <body>
     <div class="conteudo">
-        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;" onclick="window.location.href='./venda.php'">Venda</span>/Venda Editar</h4>
+        <h4>Cadastrar/<span style="color: #34679d; cursor: pointer;"
+                onclick="window.location.href='./venda.php'">Venda</span>/Venda Editar</h4>
         <div class="container">
             <?php
+            include ("conexao.php");
             $idVenda = $_GET['idVenda'];
-            $consultaVenda = "SELECT obsVenda FROM Venda WHERE idVenda = $idVenda";
+            $consultaVenda = "SELECT obsVenda, idPessoa FROM Venda WHERE idVenda = $idVenda";
             $resultadoVenda = $mysqli->query($consultaVenda);
             $obsVenda = "";
+            $idPessoa = 0;
             if ($resultadoVenda->num_rows > 0) {
                 $row = $resultadoVenda->fetch_assoc();
                 $obsVenda = $row['obsVenda'];
+                $idPessoa = $row['idPessoa'];
+            }
+            $apelidoPessoa = "";
+            if ($idPessoa) {
+                $consultaPessoa = "SELECT apelidoPessoa FROM pessoa WHERE idPessoa = $idPessoa";
+                $resultadoPessoa = $mysqli->query($consultaPessoa);
+                if ($resultadoPessoa->num_rows > 0) {
+                    $row = $resultadoPessoa->fetch_assoc();
+                    $apelidoPessoa = $row['apelidoPessoa'];
+                }
             }
             ?>
             <form id="formVenda" method="post" action="Venda/VendaA001.php">
@@ -51,7 +64,26 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="obsVenda">Observações</label>
-                        <input type="text" class="form-control" id="obsVenda" name="obsVenda" placeholder="Observações da Venda" value="<?php echo $obsVenda; ?>">
+                        <input type="text" class="form-control" id="obsVenda" name="obsVenda"
+                            placeholder="Observações da Venda" value="<?php echo $obsVenda; ?>">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="cliente">Cliente</label>
+                        <select class="form-control" id="cliente" name="cliente" >
+                            <option value="<?php echo $apelidoPessoa; ?>"><?php echo $apelidoPessoa; ?></option>
+                            <?php
+                            
+                            $consultaCliente = "SELECT idPessoa, apelidoPessoa  FROM pessoa";
+                            $resultadoCliente = $mysqli->query($consultaCliente);
+                            if ($resultadoCliente->num_rows > 0) {
+                                while ($row = $resultadoCliente->fetch_assoc()) {
+                                    echo "<option value='" . $row['idPessoa'] . "'>" . $row['apelidoPessoa'] . "</option>";
+                                }
+                            }
+                            $resultadoCliente->free();
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -80,7 +112,8 @@
                         <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" value="1">
                     </div>
                     <div class="form-group col-md-2 align-self-end">
-                        <button type="button" class="btn btn-primary btn-block" onclick="adicionarProduto()">Adicionar</button>
+                        <button type="button" class="btn btn-primary btn-block"
+                            onclick="adicionarProduto()">Adicionar</button>
                     </div>
                 </div>
                 <div class="form-row">
@@ -121,7 +154,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-block" onclick="editarVenda()">Salvar Venda</button>
+                    <button type="button" class="btn btn-primary btn-block" onclick="editarVenda()">Salvar
+                        Venda</button>
                 </div>
             </form>
         </div>
