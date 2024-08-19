@@ -1,31 +1,20 @@
 <?php
 include("../conexao.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $idProduto = $_POST["idProduto"];
-    $nomeProduto = $_POST["nomeProduto"];
-    $valorProduto = str_replace(',', '.', $_POST["valorProduto"]);
-    $valorProduto = floatval($valorProduto);
-    $statusProduto = $_POST["statusProduto"];
+$idProduto = $_POST['idProduto'];
+$nomeProduto = $_POST['nomeProduto'];
+$valorProduto = preg_replace('/[^0-9,]/', '', $_POST["valorProduto"]);
+// Substituir vírgulas por pontos para usar como separador decimal
+$valorProduto = str_replace(',', '.', $valorProduto);
+// Converter para float
+$valorProduto = floatval($valorProduto);
+$statusProduto = $_POST['statusProduto'];
 
-    $sql = "UPDATE Produto SET nomeProduto = ?, valorProduto = ?, statusProduto = ? WHERE idProduto = ?";
+$updateProduto = "UPDATE Produto SET nomeProduto = '$nomeProduto', valorProduto = '$valorProduto', statusProduto = '$statusProduto' WHERE idProduto = '$idProduto'";
 
-    $stmt = $mysqli->prepare($sql);
-    if ($stmt) {
-        $stmt->bind_param("sdsi", $nomeProduto, $valorProduto, $statusProduto, $idProduto);
-        $stmt->execute();
-        if ($stmt->affected_rows > 0) {
-            echo "sucesso";
-            header("Location: ../produto.php");
-        } else {
-            echo "Erro ao atualizar dados.";
-        }
-        $stmt->close();
-    } else {
-        echo "Erro ao preparar a consulta.";
-    }
-    $mysqli->close();
+if ($mysqli->query($updateProduto) === TRUE) {
+    echo json_encode(["status" => "success", "message" => "Produto atualizado com sucesso!"]);
 } else {
-    echo "Método de requisição inválido.";
+    echo json_encode(["status" => "error", "message" => "Erro ao atualizar o produto: " . $mysqli->error]);
 }
-?>
+$mysqli->close();
